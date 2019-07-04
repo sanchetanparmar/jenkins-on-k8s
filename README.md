@@ -14,7 +14,7 @@ Once Deployment done. you can get pod details and find jenkins admin intial pass
 
 ```kubectl get pods --namespace=jenkins``` 
 
-```kubectl logs  jenkins-deployment-85478dcjcg  -n jenkins  | grep password -A 3```
+```kubectl exec -it `kubectl get pods --selector=app=jenkins --output=jsonpath={.items..metadata.name}` cat /var/jenkins_home/secrets/initialAdminPassword```
 
 You will find intial password. Get Node Ip and Open Node IP with port `30000` As we mentioned `NodePort=30000`
 
